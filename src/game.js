@@ -16,12 +16,13 @@ class Game extends React.Component {
     }
   }
 
-  setupGame = () => (
-    photos.map((url) => ({
+  setupGame = () => {
+    const duplicatedPhotos = photos.concat(photos)
+    return duplicatedPhotos.map((url) => ({
       src: url,
       isFlipped: false
     }))
-  )
+  }
 
   render() {
     return (
