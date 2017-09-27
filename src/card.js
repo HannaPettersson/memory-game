@@ -7,12 +7,12 @@ class Card extends React.Component {
 
   // The function whe call from onClick. We give it a name 'handleClick'
   // and it takes no arguments. Because it's in this class, it has access to `this`.
-  // So it can use this.props.src
+  // So it can use this.props.id
   //
   // This will call the `whenClicked` function which was passed into the Card
-  // as a prop from the Game component.  
+  // as a prop from the Game component.
   handleClick = () => {
-    this.props.whenClicked(this.props.src)
+    this.props.whenClicked(this.props.id)
   }
 
   // render() is a required function for our component.

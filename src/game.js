@@ -1,6 +1,7 @@
 import React from "react"
 import Card from "./card"
 import shuffle from "shuffle-array"
+import uuidv4 from "uuid/v4"
 
 const photos = [
   "/images/dog1.jpeg",
@@ -22,7 +23,8 @@ class Game extends React.Component {
     const shuffledPhotos = shuffle(duplicatedPhotos)
     return shuffledPhotos.map((url) => ({
       src: url,
-      isFlipped: false
+      isFlipped: false,
+      id: uuidv4()
     }))
   }
 
@@ -34,8 +36,14 @@ class Game extends React.Component {
   // Create a new instance of the Card component. With the following props:
   //   src: the url of the photo for the card
   //   whenClicked: a callback function which the card can invoke when it is clicked
+  //   key: a unique identifier for react to use when rendering from an array
+  //   id: a unique identifier we can use to refer to this card later
   renderCard = (card) => (
-    <Card src={card.src} whenClicked={this.handleCardClicked} />
+    <Card 
+      key={card.id}
+      id={card.id}
+      src={card.src}
+      whenClicked={this.handleCardClicked} />
   )
 
   render() {
