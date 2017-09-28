@@ -38,11 +38,13 @@ class Game extends React.Component {
   //   whenClicked: a callback function which the card can invoke when it is clicked
   //   key: a unique identifier for react to use when rendering from an array
   //   id: a unique identifier we can use to refer to this card later
+  //   isFlipped: a boolean which will be toggled when the card is flipped
   renderCard = (card) => (
     <Card
       key={card.id}
       id={card.id}
       src={card.src}
+      isFlipped={card.isFlipped}
       whenClicked={this.handleCardClicked} />
   )
 

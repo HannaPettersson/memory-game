@@ -1,8 +1,15 @@
 .card {
   width: 200px;
   float: left;
+  padding: 10px;
+  background: red;
 }
 
 .card img {
   width: 200px;
+  visibility: hidden;
+}
+
+.card.flipped img {
+  visibility: visible;
 }
