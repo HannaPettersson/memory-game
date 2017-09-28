@@ -46,7 +46,24 @@ class Game extends React.Component {
       return card
     })
 
-    this.setState({ cards: newCardsState })
+    this.setState({ cards: newCardsState }, this.checkIfCardsMatched)
+  }
+
+  checkIfCardsMatched = () => {
+    const flippedCards = this.state.cards.filter((image) => {
+      return image.isFlipped
+    })
+
+    if (flippedCards.length === 2) {
+      setTimeout(() => {
+        const newCardsState = this.state.cards.map((image) => {
+          image.isFlipped = false
+          return image
+        })
+
+        this.setState({ cards: newCardsState })
+      }, 1000)
+    }
   }
 
   // Create a new instance of the Card component. With the following props:
