@@ -29,8 +29,8 @@ class Game extends React.Component {
   }
 
   // New function which will take one argument, a "card src" and logs it
-  handleCardClicked = (cardSrc) => {
-    console.log(cardSrc)
+  handleCardClicked = (cardId) => {
+    console.log(cardId)
   }
 
   // Create a new instance of the Card component. With the following props:
@@ -39,7 +39,7 @@ class Game extends React.Component {
   //   key: a unique identifier for react to use when rendering from an array
   //   id: a unique identifier we can use to refer to this card later
   renderCard = (card) => (
-    <Card 
+    <Card
       key={card.id}
       id={card.id}
       src={card.src}
