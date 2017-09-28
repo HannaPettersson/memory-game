@@ -49,20 +49,28 @@ class Game extends React.Component {
     this.setState({ cards: newCardsState }, this.checkIfCardsMatched)
   }
 
+  // Callback function to run after we've flipped cards over.
   checkIfCardsMatched = () => {
+    // Use .filter to make an array of the cards which have isFlipped === true
     const flippedCards = this.state.cards.filter((image) => {
       return image.isFlipped
     })
 
+    // If there's 2 flippedCards, we want to hide them
     if (flippedCards.length === 2) {
+      // We want to wait a second to hide them, though...
       setTimeout(() => {
+        // Use .map to generate a new array of cards which all have
+        // isFlipped set to false.
         const newCardsState = this.state.cards.map((image) => {
           image.isFlipped = false
           return image
         })
 
+        // Call setState to update the this.state.cards state
+        // with the result from our map above.
         this.setState({ cards: newCardsState })
-      }, 1000)
+      }, 1000) // 1000 is the number of milliseconds we're waiting to execute the function
     }
   }
 
