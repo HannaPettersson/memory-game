@@ -105,13 +105,25 @@ class Game extends React.Component {
     return matchedCards.length === this.state.cards.length
   }
 
+  resetGame = () => {
+    this.setState({ cards: this.setupGame() })
+  }
+
   render() {
     if (this.gameIsFinished()) {
-      return <SuccessMessage />
+      return (
+        <div>
+          <SuccessMessage />
+          <button onClick={this.resetGame}>Reset</button>
+        </div>
+      )
     } else {
       return (
         <div className="game">
           <h1>Memory game</h1>
+          {(new Array(20)).map(() => (
+            <div>Hello</div>
+          ))}
           {this.state.cards.map((card) => (this.renderCard(card)))}
         </div>
       )
