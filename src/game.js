@@ -2,6 +2,7 @@ import React from "react"
 import Card from "./card"
 import shuffle from "shuffle-array"
 import uuidv4 from "uuid/v4"
+import SuccessMessage from "./success-message"
 
 const photos = [
   "/images/dog1.jpeg",
@@ -96,13 +97,25 @@ class Game extends React.Component {
       whenClicked={this.handleCardClicked} />
   )
 
+  gameIsFinished = () => {
+    const matchedCards = this.state.cards.filter((card) => {
+      return card.isMatched
+    })
+
+    return matchedCards.length === this.state.cards.length
+  }
+
   render() {
-    return (
-      <div className="game">
-        <h1>Memory game</h1>
-        {this.state.cards.map((card) => (this.renderCard(card)))}
-      </div>
-    )
+    if (this.gameIsFinished()) {
+      return <SuccessMessage />
+    } else {
+      return (
+        <div className="game">
+          <h1>Memory game</h1>
+          {this.state.cards.map((card) => (this.renderCard(card)))}
+        </div>
+      )
+    }
   }
 
 }
