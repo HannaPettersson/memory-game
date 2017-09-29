@@ -13,3 +13,7 @@
 .card.flipped img {
   visibility: visible;
 }
+
+.card.matched {
+  visibility: hidden;
+}

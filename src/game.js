@@ -24,6 +24,7 @@ class Game extends React.Component {
     return shuffledPhotos.map((url) => ({
       src: url,
       isFlipped: false,
+      isMatched: false,
       id: uuidv4()
     }))
   }
@@ -63,6 +64,10 @@ class Game extends React.Component {
         // Use .map to generate a new array of cards which all have
         // isFlipped set to false.
         const newCardsState = this.state.cards.map((image) => {
+          if (flippedCards[0].src === flippedCards[1].src && flippedCards.includes(image)) {
+            image.isMatched = true
+          }
+
           image.isFlipped = false
           return image
         })
@@ -80,12 +85,14 @@ class Game extends React.Component {
   //   key: a unique identifier for react to use when rendering from an array
   //   id: a unique identifier we can use to refer to this card later
   //   isFlipped: a boolean which will be toggled when the card is flipped
+  //   isMatched: a boolean which will be set to true once the card has been matched, and should be removed
   renderCard = (card) => (
     <Card
       key={card.id}
       id={card.id}
       src={card.src}
       isFlipped={card.isFlipped}
+      isMatched={card.isMatched}
       whenClicked={this.handleCardClicked} />
   )
 
